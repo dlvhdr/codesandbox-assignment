@@ -1,0 +1,45 @@
+.nav {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  justify-self: center;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  width: 100%;
+}
+
+.repo {
+  margin: 0;
+}
+
+.description {
+  grid-column-start: 2;
+  line-height: 1.4;
+  letter-spacing: -0.0125em;
+  color: #b0b0b0;
+}
+
+.stargazers {
+  justify-self: end;
+  color: #b0b0b0;
+  fill: #b0b0b0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.startsCount {
+  position: relative;
+  top: 2px;
+}
+
+.backButton {
+  justify-self: start;
+  line-height: 0;
+  fill: #b0b0b0;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  background: none;
+}

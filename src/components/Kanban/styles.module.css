@@ -1,0 +1,8 @@
+.root {
+  display: grid;
+  padding-top: 100px;
+  padding-inline: 150px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 20px;
+}

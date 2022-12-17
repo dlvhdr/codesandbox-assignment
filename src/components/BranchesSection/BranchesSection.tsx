@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+import { useBranches } from "../../contexts/BranchesContext";
 import Branch from "../Branch/Branch";
 import styles from "./styles.module.css";
 
@@ -17,18 +19,26 @@ const SectionLabels: Record<SectionType, string> = {
 
 type Props = {
   type: SectionType;
-  branches?: string[];
 };
 
-function BranchesSection({ type, branches = [] }: Props) {
+function BranchesSection({ type }: Props) {
+  const { branches } = useBranches();
+
+  const sectionBranches = useMemo(() => {
+    return branches.filter((branch) => branch.state === type);
+  }, [branches]);
   return (
     <section>
       <h2 className={styles.header}>
-        {SectionLabels[type]} ({branches.length})
+        {SectionLabels[type]} ({sectionBranches.length})
       </h2>
       <section className={styles.branches}>
-        {branches.map((branch) => (
-          <Branch key={branch} name={branch} sectionType={type} />
+        {sectionBranches.map((branch) => (
+          <Branch
+            key={branch.name}
+            name={branch.name}
+            sectionType={branch.state}
+          />
         ))}
       </section>
     </section>
