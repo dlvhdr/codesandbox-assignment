@@ -1,0 +1,20 @@
+.branch {
+  color: #b0b0b0;
+  background-color: #222222;
+  padding: 24px;
+  border-radius: 4px;
+  display: flex;
+  flex: row;
+  flex-grow: 1;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.branchName {
+  margin: 0;
+  line-height: 1.4;
+  font-weight: 400;
+  flex-grow: 1;
+  text-align: center;
+}

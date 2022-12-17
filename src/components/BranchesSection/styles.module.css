@@ -1,3 +1,12 @@
 .header {
   font-size: 0.8571rem;
+  margin-bottom: 20px;
+  color: #b0b0b0;
+  font-weight: 400;
+}
+
+.branches {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

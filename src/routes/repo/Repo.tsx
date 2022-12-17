@@ -55,13 +55,15 @@ function Repo() {
   return (
     <main className={styles.root}>
       <nav className={styles.nav}>
-        <h1>{data?.name}</h1>
-        <h1>{data?.description}</h1>
+        <h1 className={styles.repo}>{data?.name}</h1>
+        <p className={styles.description}>{data?.description}</p>
       </nav>
-      <BranchesSection type={Sections.IN_PROGRESS} />
+      <BranchesSection
+        type={Sections.IN_PROGRESS}
+        branches={data?.refs.nodes.map((node) => node.name)}
+      />
       <BranchesSection type={Sections.REVIEW} />
       <BranchesSection type={Sections.READY} />
-      <p>{data?.refs.nodes.map((node) => node.name).join(", ")}</p>
     </main>
   );
 }

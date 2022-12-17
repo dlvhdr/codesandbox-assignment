@@ -1,3 +1,4 @@
+import Branch from "../Branch/Branch";
 import styles from "./styles.module.css";
 
 export const Sections = {
@@ -6,7 +7,7 @@ export const Sections = {
   READY: "READY",
 } as const;
 
-type SectionType = keyof typeof Sections;
+export type SectionType = keyof typeof Sections;
 
 const SectionLabels: Record<SectionType, string> = {
   [Sections.IN_PROGRESS]: "In progress",
@@ -16,12 +17,20 @@ const SectionLabels: Record<SectionType, string> = {
 
 type Props = {
   type: SectionType;
+  branches?: string[];
 };
 
-function BranchesSection({ type }: Props) {
+function BranchesSection({ type, branches = [] }: Props) {
   return (
     <section>
-      <h2 className={styles.header}>{SectionLabels[type]}</h2>
+      <h2 className={styles.header}>
+        {SectionLabels[type]} ({branches.length})
+      </h2>
+      <section className={styles.branches}>
+        {branches.map((branch) => (
+          <Branch key={branch} name={branch} sectionType={type} />
+        ))}
+      </section>
     </section>
   );
 }
