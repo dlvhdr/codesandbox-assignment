@@ -1,4 +1,7 @@
 :root {
+  --foreground: #f2f2f2;
+  --background: #151515;
+
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1.6;
@@ -15,8 +18,11 @@
 }
 
 body {
-  margin: 0;
+  color: var(--foreground);
+  background-color: var(--background);
+
   min-height: 100vh;
+  margin: 0;
 }
 
 h1 {
