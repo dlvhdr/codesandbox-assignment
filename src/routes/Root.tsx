@@ -1,22 +1,25 @@
-import { FormEvent, useRef } from "react";
+import { FormEvent, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Root.module.css";
 
-function App() {
+function Root() {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
+  const handleSubmit = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
 
-    if (inputRef.current == null) {
-      return;
-    }
+      if (inputRef.current == null) {
+        return;
+      }
 
-    const url = new URL(inputRef.current.value);
+      const url = new URL(inputRef.current.value);
 
-    navigate(url.pathname);
-  };
+      navigate(url.pathname);
+    },
+    [inputRef.current]
+  );
 
   return (
     <main className={styles.root}>
@@ -28,7 +31,13 @@ function App() {
         />
         <h1 className={styles.heading}>Start by pasting the repository URL.</h1>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <input placeholder="https://" type="url" ref={inputRef} />
+          <input
+            placeholder="https://"
+            type="url"
+            ref={inputRef}
+            required={true}
+            pattern="(https:\/\/)?(www)?github.com\/.+\/.+"
+          />
           <button type="submit">Submit</button>
         </form>
       </section>
@@ -36,4 +45,4 @@ function App() {
   );
 }
 
-export default App;
+export default Root;

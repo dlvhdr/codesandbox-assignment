@@ -1,21 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  useParams,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
+import Repo from "./routes/Repo";
 import "./index.module.css";
-
-const Wow = () => {
-  const { owner, repo } = useParams();
-  return (
-    <div>
-      Hi from {owner}/{repo}
-    </div>
-  );
-};
 
 const router = createBrowserRouter([
   {
@@ -24,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/:owner/:repo",
-    element: <Wow />,
+    element: <Repo />,
   },
 ]);
 
