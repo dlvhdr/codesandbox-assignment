@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/Root";
-import Repo from "./routes/Repo";
+import Root from "./routes/root/Root";
+import Repo from "./routes/repo/Repo";
 import "./index.module.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -12,7 +15,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/:owner/:repo",
-    element: <Repo />,
+    element: (
+      <QueryClientProvider client={queryClient}>
+        <Repo />
+      </QueryClientProvider>
+    ),
   },
 ]);
 

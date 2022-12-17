@@ -1,6 +1,6 @@
 import { FormEvent, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./Root.module.css";
+import styles from "./styles.module.css";
 
 function Root() {
   const navigate = useNavigate();
