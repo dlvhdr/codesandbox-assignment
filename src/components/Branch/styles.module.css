@@ -11,6 +11,10 @@
   align-items: center;
 }
 
+.branch:hover {
+  background-color: var(--primary-400);
+}
+
 .branchName {
   margin: 0;
   line-height: 1.4;
