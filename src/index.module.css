@@ -1,7 +1,4 @@
 :root {
-  --foreground: #f2f2f2;
-  --background: #151515;
-
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
   line-height: 1.6;
@@ -15,11 +12,29 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --primary-600: #f2f2f2;
+  --primary-500: #b0b0b0;
+  --primary-400: #383838;
+  --primary-300: #222222;
+  --primary-200: #151515;
+  --warning-600: #e75b4f;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --primary-600: #151515;
+    --primary-500: #515151;
+    --primary-400: #d1d1d1;
+    --primary-300: #eeeeee;
+    --primary-200: #ffffff;
+    --warning-600: #d62617;
+  }
 }
 
 body {
-  color: var(--foreground);
-  background-color: var(--background);
+  color: var(--primary-600);
+  background-color: var(--primary-200);
 
   min-height: 100vh;
   margin: 0;

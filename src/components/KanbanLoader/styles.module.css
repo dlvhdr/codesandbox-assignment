@@ -20,5 +20,5 @@
 .description {
   line-height: 1.4;
   letter-spacing: -0.0125em;
-  color: #b0b0b0;
+  color: var(--primary-500);
 }

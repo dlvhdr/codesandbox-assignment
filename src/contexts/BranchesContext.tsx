@@ -3,47 +3,13 @@ import {
   Sections,
   SectionType,
 } from "../components/BranchesSection/BranchesSection";
-import { useQuery } from "@tanstack/react-query";
-import { Octokit } from "octokit";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { useFetchRepo } from "../hooks/useFetchRepo";
 
 type StoredBranch = {
   name: string;
   state: SectionType;
 };
-
-async function fetchRepo(owner: string, name: string) {
-  const octokit = new Octokit({ auth: import.meta.env.VITE_GITHUB_TOKEN });
-  const { repository } = await octokit.graphql<{
-    repository: {
-      name: string;
-      description: string;
-      refs: {
-        nodes: Array<{
-          name: string;
-        }>;
-      };
-      stargazerCount: number;
-    };
-  }>(
-    `
-    query($name:String!, $owner:String!, $limit: Int!) { 
-      repository(name:$name, owner:$owner) {
-        name
-        description
-        stargazerCount
-        refs(first: $limit, refPrefix:"refs/heads/") {
-          nodes {
-            name
-          }
-        }  
-      }
-    }
-  `,
-    { owner, name, limit: 10 }
-  );
-  return repository;
-}
 
 type BranchesContextType = {
   branches: StoredBranch[];
@@ -87,16 +53,12 @@ type UseBranches = {
   };
 };
 
-function useFetchBranches(owner: string, repo: string): UseBranches {
-  const { isLoading, data, error } = useQuery({
-    queryKey: ["repo"],
-    queryFn: async () => fetchRepo(owner, repo),
-  });
-
+export function useFetchBranches(owner: string, name: string): UseBranches {
   const [storedBranches, setStoredBranches] = useLocalStorage<StoredBranch[]>(
-    `${owner}/${repo}`,
+    `${owner}/${name}`,
     []
   );
+  const { isLoading, data, error } = useFetchRepo(owner, name);
 
   const branches: StoredBranch[] = useMemo(() => {
     return (

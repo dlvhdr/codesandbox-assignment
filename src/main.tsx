@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./routes/root/Root";
-import KanbanLoader from "./routes/repo/KanbanLoader";
+import Home from "./components/Home/Home";
+import KanbanLoader from "./components/KanbanLoader/KanbanLoader";
 import "./index.module.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -11,7 +11,11 @@ const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: (
+      <QueryClientProvider client={queryClient}>
+        <Home />
+      </QueryClientProvider>
+    ),
   },
   {
     path: "/:owner/:name",

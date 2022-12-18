@@ -1,6 +1,6 @@
 .branch {
-  color: #b0b0b0;
-  background-color: #222222;
+  color: var(--primary-500);
+  background-color: var(--primary-300);
   padding: 24px;
   border-radius: 4px;
   display: flex;
